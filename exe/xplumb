@@ -38,6 +38,12 @@ fn handle_local_image {
 	exec xivo $p
 }
 
+fn handle_curl_image {
+	imgpath = `{mktemp | tr -d ' '}^.$ext
+	curl $url -o $imgpath
+	exec xivo $imgpath
+}
+
 fn handle_local_video {
 	exec mpv --realy-quiet $p
 }
@@ -96,6 +102,7 @@ pass = $urlp(3)
 host = $urlp(4)
 port = $urlp(5)
 p = $urlp(6)
+ext = `{extname $p}
 
 imgfmt = `{2ff || {echo $0: images are unsupported >[1=2]} }
 
@@ -115,6 +122,14 @@ case bitreich.org
 	switch($p){
 	case /live
 		open_in_http_music_player
+	}
+}
+
+switch($p){
+case *.^$imgfmt
+	switch($scheme){
+	case http https gopher ftp ftps
+		handle_curl_image
 	}
 }
 
