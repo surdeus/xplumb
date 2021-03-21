@@ -131,7 +131,7 @@ case *.^$imgfmt
 	case http https gopher ftp ftps
 		handle_curl_image
 	}
-case *.mp4 *.webm *.m3u
+case *.mp4 *.mkv *.webm *.m3u
 	switch($scheme){
 	case gopher http https ftp ftps
 		open_in_video_browser
