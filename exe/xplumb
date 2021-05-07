@@ -58,10 +58,16 @@ fn handle_local_dir {
 	exec xmux -t$"t rc -c $"comm
 }
 
+fn handle_local_book {
+	exec zathura $p
+}
+
 fn plumb_local_file {
 	switch($p){
 		case *.d
 			handle_local_dir
+		case *.fb2 *.djvu *.pdf
+			handle_local_book
 		case *.^$imgfmt
 			handle_local_image
 		case *.mp4 *.mkv
