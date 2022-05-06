@@ -72,10 +72,10 @@ fn plumb_local_file {
 			handle_local_image
 		case *.mp4 *.mkv
 			handle_local_video
+		case *.doc *.docx
+			exec libreoffice $p
 		case *.c *.rc *.md *.txt *.cc *.cpp *.C *.cs *.txt *.py *.hs *.rs *
 			handle_local_text
-		case *.doc *.docx:
-			exec libreoffice $p
 	}
 
 }
