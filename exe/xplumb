@@ -45,7 +45,7 @@ fn handle_curl_image {
 }
 
 fn handle_local_video {
-	exec mpv --realy-quiet $p
+	exec mpv --really-quiet $p
 }
 
 fn handle_local_text {
@@ -74,6 +74,8 @@ fn plumb_local_file {
 			handle_local_video
 		case *.c *.rc *.md *.txt *.cc *.cpp *.C *.cs *.txt *.py *.hs *.rs *
 			handle_local_text
+		case *.doc *.docx:
+			exec libreoffice $p
 	}
 
 }
